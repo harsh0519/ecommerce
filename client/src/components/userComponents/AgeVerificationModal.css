@@ -1,0 +1,83 @@
+/* Modal Styling */
+.age-verification-modal .modal-content {
+    background-color: #1b1b1b;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    z-index: 9999;
+}
+
+.age-verification-modal .modal-header {
+    border-bottom: none;
+}
+
+.age-verification-modal .modal-header .close {
+    color: #fff;
+    opacity: 1;
+    font-size: 1.5rem;
+}
+
+.age-verification-modal .modal-title {
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+.age-verification-modal .modal-body {
+    padding: 20px;
+}
+
+.age-verification-modal .modal-body p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.age-verification-modal .modal-body .btn {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.age-verification-modal .modal-body .btn-outline-danger {
+    color: #ff4c4c;
+    border-color: #ff4c4c;
+    background-color: transparent;
+}
+
+.age-verification-modal .modal-body .btn-outline-danger:hover {
+    background-color: #ff4c4c;
+    color: #fff;
+}
+
+.age-verification-modal .modal-body .btn-outline-success {
+    color: #28a745;
+    border-color: #28a745;
+    background-color: transparent;
+}
+
+.age-verification-modal .modal-body .btn-outline-success:hover {
+    background-color: #28a745;
+    color: #fff;
+}
+
+/* Overlay Styling */
+.age-verification-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 1040;
+}
+
+/* Dialog Centering */
+.age-verification-dialog {
+    max-width: 500px;
+    margin: auto;
+}
+
+.modal-content-rejected {
+    color: #ff4c4c;
+}

@@ -1,0 +1,776 @@
+/* AppNavbar & AppFooter*/
+
+.authBtns{
+    color: white !important;
+    border: 1px solid #0E6B06 !important;
+}
+
+.myRespMenuDrpdwn, .myProfileDrpdwn{
+    width: 15rem;
+    background-color: white;
+    z-index: 5;
+    border-radius: 10px !important;
+    border: 1px solid #0E6B06;
+}
+
+.cartBtn{
+    border: 1px solid white !important;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    width: 4.5rem;
+}
+
+.footerMenu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 40%;
+}
+
+@media screen and (max-width : 991px) {
+    .navTab{
+        display: none;
+    }
+    .respBtn{
+        display: block;
+    }
+    .myProfileDrpdwn{
+        position: absolute;
+        top: 4.25rem;
+        right: 5.5rem;
+    }
+    .myRespMenuDrpdwn{
+        position: absolute;
+        top: 4.25rem;
+        right: 2.5rem;
+    }
+    .footerMenu{
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width : 992px) {
+    .navs{
+        width: 65%;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .respBtn{
+        display: none !important;
+    }
+    .myProfileDrpdwn{
+        position: absolute;
+        top: 4.25rem;
+        right: 2rem;
+    }
+}
+
+@media screen and (min-width : 1200px) {
+    .navs{
+        width: 55%;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* AdminNavbar & AdminFooter */
+
+.adminNavTab{
+    display: none;
+}
+
+.adminNavsIcon{
+    width: 8rem;
+}
+
+.adminRespMenuDrpdwn{
+    width: 12rem;
+    background-color: white;
+    z-index: 5;
+    border-radius: 10px !important;
+    border: 1px solid blue;
+    position: absolute;
+    top: 4.25rem;
+    right: 2.5rem;
+}
+
+@media screen and (min-width : 768px){
+    .adminNavs{
+        width: 12rem;
+        justify-content: space-around;
+    }
+    .adminNavTab{
+        display: block;
+    }
+    .adminAuthBtns,.adminRespMenuDrpdwn{
+        display: none !important;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* Login & Register */
+
+.frgtPwdText, .loginText{
+    color: #0E6B06;
+    text-decoration: none;
+}
+
+.authErrorText{
+    color: red;
+}
+
+.authForm{
+    border: 1px solid #0E6B06;
+}
+
+@media screen and (min-width : 768px){
+    .authForm{
+        width: 55%;
+    }
+}
+
+@media screen and (min-width : 1024px){
+    .authForm{
+        width: 35%;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* AdminLogin & AdminRegister */
+
+.adminFrgtPwdText, .adminLoginText{
+    color: blue;
+    text-decoration: none;
+}
+
+.adminAuthForm {
+    border: 1px solid blue;
+}
+
+.adminAuthErrorText{
+    color: red;
+}
+
+
+@media screen and (min-width : 768px){
+    .adminAuthForm{
+        width: 55%;
+    }
+}
+
+@media screen and (min-width : 1024px){
+    .adminAuthForm{
+        width: 35%;
+    }
+}
+
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* Home */
+
+.carouselImage{
+    width: 100%;
+    height: 23rem;
+    object-fit: contain;
+}
+
+.processStepBlock{
+    width: 18rem;
+}
+
+.homeTextContent{
+    margin-top : 1rem
+}
+
+.tipsBlock{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+@media screen and (max-width : 576px){
+    .tipsBlock{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width : 768px){
+    .homeTextContent{
+        display: flex;
+        flex-direction: column !important;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .homeTextRightContent{
+        width: 100% !important;
+    }
+    .tipsImage{
+        width: 7rem;
+    }
+}
+
+@media screen and (min-width : 991px){
+    .homeTextContent{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .homeTextLeftContent,.homeTextRightContent{
+        width: 50%;
+    }
+    .homeTextRightContent{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .tipsImage{
+        width: 11rem;
+    }
+}
+
+@media screen and (max-width : 991px){
+    .carouselImage{
+        height: 10rem;
+    }
+    .homeTextContent{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .homeTextLeftContent,.homeTextRightContent{
+        width: 100%;
+    }
+    .homeTextRightContent{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .tipsImage{
+        width: 7rem;
+    }    
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* About Us */
+
+.aboutImage{
+    width: 100%;
+    height: 10rem;
+}
+
+.aboutPrdtImage{
+    width: 200px;
+    height: 200px;
+}
+
+.aboutLeftContent{
+    padding: 2rem 0;
+}
+
+.aboutRightContent{
+    margin-left: 25%;
+    margin-bottom: 5%;
+}
+
+@media screen and (min-width : 991px){
+    .aboutImage{
+        width: 100%;
+        height: 25rem;
+    }
+    .aboutContent{
+        display: flex;
+        flex-direction: row;
+    }
+    .aboutLeftContent, .aboutRightContent{
+        width: 50%;
+        padding: 2rem 0;
+    }
+    .aboutRightContent{
+        margin-left: 25%;
+        margin-top: 5%;
+    }
+    .aboutPrdtImage{
+        width: 400px;
+        height: 400px;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* Health & Certifications */
+.carouselHCImage{
+    width: 100%;
+    height: 10rem;
+    object-fit: fill;
+}
+
+.hcComboImg, .hcCertifyImg{
+    width: 300px;
+    height: 300px;
+}
+
+.healthBlock, .certificationBlock{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.healthBlock{
+    padding-top: 2rem;
+}
+
+.certificationBlock{
+    padding-bottom: 2rem;
+}
+
+@media screen and (max-width : 576px){
+    .hcComboImg, .hcCertifyImg{
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media screen and (min-width : 991px){
+    .carouselHCImage{
+        height: 23rem;
+    }
+    .healthBlock, .certificationBlock{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .hcComboImg, .hcCertifyImg{
+        width: 300px;
+        height: 300px;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* Contactus */
+
+@media screen and (min-width : 991px){
+    .contactBlock{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .mapBlock, .contactForm{
+        width: 50%;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*Buy Produts */
+
+.productCard{
+    margin-left: 15%;
+}
+
+.productCardBody {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center !important;
+}
+
+@media screen and (min-width : 768px){
+    .productCard{
+        margin-left: 0;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*My Accounts */
+
+.accountCards{
+    display: flex;
+    justify-content: space-around;
+    margin: 3rem 0;
+}
+
+@media screen and (max-width : 576px){
+    .cardImage {
+        width: 6rem;
+    }
+    .subtitle{
+        font-size: smaller;
+    }
+}
+
+@media screen and (max-width : 767px){
+    .cardImage {
+        width: 8rem;
+    }
+    .accountCards{
+        flex-direction: column;
+    }
+    .cardAcc{
+        margin-bottom: 1rem;
+    }
+    .cardBody{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .cardBodyText{
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: end;
+    }
+}
+
+@media screen and (min-width : 768px) and (max-width : 991px){
+    .cardImage {
+        width: 8rem;
+    }
+    .accountCards{
+        flex-direction: row;
+    }
+    .cardAcc{
+        width: 14rem;
+    }
+    .cardBody{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .cardBodyText{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width : 991px){
+    .cardImage {
+        width: 10rem;
+    }
+    .accountCards{
+        flex-direction: row;
+    }
+    .cardAcc{
+        width: 22rem;
+    }
+    .cardBody{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .cardBodyText{
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: end;
+    }
+}
+
+@media screen and (min-width : 991px) and (max-width : 1200px){
+    .cardAcc{
+        width: 19rem;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*My Profile */
+
+.profileBlock{
+    padding : 2rem;
+    border : 1px solid #0E6B06;
+    border-radius: 30px;
+}
+.profileTextField{
+    border:  1px solid #0E6B06;
+    border-radius: 10px;
+    height: 2rem;
+    padding: 0 0.5rem;
+    align-content: center;
+}
+
+@media screen and (min-width :992px){
+    .profileBlock{
+        width: 40%;
+        height: max-content;
+        padding : 3rem;
+    }
+    .profileData{
+        height: max-content;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*My Address */
+
+.actionBtns{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.addressText{
+    max-height: 12rem;
+}
+
+@media screen and (min-width : 768px) and (max-width : 991px){
+    .addressText{
+        height: 15rem;
+        max-height: 19rem;
+    }  
+}
+
+@media screen and (min-width :992px){
+    .addressCards{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 3rem 0;
+    }
+    .addressContent{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .addressText{
+        height: 10rem;
+    }    
+}
+
+@media screen and (min-width :1200px) {
+    .addressText{
+        height: 8rem;
+    }  
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* CART CARD */
+
+.cartItemCard {
+    flex-direction: row !important;
+    width: 70%;
+    height: 12rem  !important;
+    min-height: 5rem;
+    max-height: max-content;
+}
+
+.cartItemCardImage{
+    width: 15rem;
+}
+
+.cartItemCardBody{
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cartItemCardQuantity, .cartItemCardCount{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cartItemCardCount{
+    width: 20%;
+}
+
+.cartItemCardHeader{
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.summaryBlock{
+    width: 60% !important;
+}
+
+@media screen and (max-width : 992px){
+    .cartItemCard{
+        width: 100%;
+    }
+    .cartItemCardImage{
+        width: 10rem;
+    }
+    .summaryBlock{
+        width: 80% !important;
+    }
+}
+
+@media screen and (max-width : 576px){
+    .cartItemCard{
+        height: max-content !important;
+    }
+    .cartItemCardQuantity{
+        flex-direction: column;
+        justify-content: start;
+        align-self: start;
+    }
+    .cartItemCardCount{
+        margin-top: 1rem;
+    }
+    .cartItemCardHeader{
+        flex-direction: column;
+    }
+    .summaryBlock{
+        width: 80% !important;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+
+
+/* ADMIN */
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*Dashboard */
+
+.dashboardCards{
+    display: flex;
+    justify-content: space-around;
+    margin: 3rem 0;
+}
+
+@media screen and (max-width : 767px){
+    .dashboardCards{
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width : 768px) and (max-width : 991px){
+    .dashboardCards{
+        flex-direction: row;
+    }
+}
+
+@media screen and (min-width : 991px){
+    .dashboardCards{
+        flex-direction: row;
+    }
+}
+
+@media screen and (min-width : 991px) and (max-width : 1200px){
+    .cardAcc{
+        width: 19rem;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*ADMINUSERSLIST */
+
+.popupBlock {
+    width: 80%;
+    height: 45%;
+    max-width: 300px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 30px;
+    position: absolute;
+    top: 30%;
+    left: 11%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.alertText{
+    text-align: center;
+    font-size: medium;
+}
+
+.userActionBtns{
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (min-width : 425px) and (max-width : 576px) {
+    .popupBlock{
+        left: 23%;
+    }
+}
+
+
+@media screen and (min-width : 576px) and (max-width : 768px) {
+    .popupBlock{
+        left: 25%;
+    }
+}
+
+@media screen and (min-width : 768px) and (max-width : 1024px) {
+    .popupBlock{
+        left: 35%;
+    }
+}
+
+@media screen and (min-width : 1024px) and (max-width : 1200px) {
+    .popupBlock{
+        left: 40%;
+    }
+}
+
+@media screen and (min-width : 1200px) {
+    .popupBlock{
+        left: 42%;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*Admin Profile */
+
+.adminProfileBlock{
+    padding : 2rem;
+    border : 1px solid blue;
+    border-radius: 30px;
+}
+.adminProfileTextField{
+    border:  1px solid blue;
+    border-radius: 10px;
+    height: 2rem;
+    padding: 0 0.5rem;
+    align-content: center;
+}
+
+@media screen and (min-width :992px){
+    .adminProfileBlock{
+        width: 40%;
+        height: max-content;
+        padding : 3rem;
+    }
+    .adminProfileData{
+        height: max-content;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*Loading Component */
+
+.loader{
+    margin: 10% 45%;
+    
+}

@@ -1,0 +1,33 @@
+/* starproduct.css */
+
+.star-products-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.headline-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.star-products-headline {
+  font-size: 2rem;
+  margin: 0;
+  text-align: center;
+}
+
+.headline-subtext {
+  display: block;
+  font-size: 1rem;
+  margin-top: 5px;
+  color: #666;
+}
+
+.menucard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
