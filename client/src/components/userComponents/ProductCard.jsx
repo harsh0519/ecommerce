@@ -17,7 +17,7 @@ function ProductCard({ cardData }) {
       <Card className="custom-product-card">
         <div className="image-container">
           <Image
-            src={`${import.meta.env.VITE_API_BASE_URL}/${cardData.productImage}`}
+            src={`${cardData.productImage}`}
             alt={cardData.productTitle}
             className="product-image"
           />

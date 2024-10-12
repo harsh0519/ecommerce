@@ -35,8 +35,9 @@ const productSchema = new mongoose.Schema({
         required :true
     }
 },
-{ timestamps : true },
+{ timestamps : true, strictQuery: true },
 { collection : 'products'})
+productSchema.index({productTitle: "text"})
 
 const ProductsModel = mongoose.model("products",productSchema)
 

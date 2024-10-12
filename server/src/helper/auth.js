@@ -1,20 +1,32 @@
+import { differenceInSeconds } from "date-fns";
 import jwt from "jsonwebtoken";
 
-//jwt
-
+// Create login token
 const createLoginToken = async (payload) => {
-  let loginToken = await jwt.sign(payload, process.env.JWT_SECRETKEY_LOGIN, {
-    expiresIn: process.env.JWT_EXPIRY_LOGIN,
+  let loginToken = jwt.sign(payload, process.env.JWT_SECRETKEY_LOGIN, {
+    expiresIn: "2d",
   });
   return loginToken;
 };
 
+// Decode login token
 const decodeLoginToken = (token) => {
-  const decodeCode = jwt.decode(token, { complete: true });
-//  console.log({ decodeCode });
-  return decodeCode;
+  return new Promise((res, rej) => {
+    jwt.verify(
+      token,
+      process.env.JWT_SECRETKEY_LOGIN,
+      null,
+      (err, decodedToken) => {
+        if (err) {
+          rej(err);
+        }
+        res(decodedToken);
+      }
+    ); // Verify instead of decode
+  });
 };
 
+// Create forgot password token
 const createForgotPassToken = async (payload) => {
   let token = await jwt.sign(payload, process.env.JWT_SECRETKEY_FP, {
     expiresIn: process.env.JWT_EXPIRY_FP,
@@ -26,20 +38,24 @@ const createForgotPassToken = async (payload) => {
 
 // Middlewares
 
-//session expiry
+// Session expiry (authenticate)
 const authenticate = async (req, res, next) => {
   let token = req?.headers?.authorization?.split(" ")[1];
   if (token) {
-    let payload = await decodeLoginToken(token);
-    let currentTime = +new Date();
+    try {
+      let payload = await decodeLoginToken(token);
       next();
-    //if(Math.floor(currentTime/1000)<payload.exp){
-    //      next()
-    // }else{
-    //   res.status(419).send({
-    //    message :"Session expired and Logged out"
-    // })
-    //}
+    } catch (err) {
+      if (err.name === "TokenExpiredError") {
+        return res.status(401).send({
+          message: "Session expired",
+        });
+      } else {
+        return res.status(401).send({
+          message: "Invalid token",
+        });
+      }
+    }
   } else {
     res.status(402).send({
       message: "Session is no longer available",
@@ -47,53 +63,81 @@ const authenticate = async (req, res, next) => {
   }
 };
 
-//mailId based
+// Get user email from token
 const getUserEmail = async (req, res, next) => {
   let token = req?.headers?.authorization?.split(" ")[1];
   if (token) {
-    let payload = await decodeLoginToken(token);
-    req.user = payload;
+    try {
+      let payload = await decodeLoginToken(token);
       next();
-    } else {
-      res.status(500).send({
-        message: "Expired Token",
-      });
-    }
-};
-
-//role based
-const adminGuard = async (req, res, next) => {
-//   let token = req?.headers?.authorization?.split(" ")[1];
-  let token  = req?.headers?.authorization
-  if (token) {
-    let {payload} = await decodeLoginToken(token);
-    if (payload.isAdmin === true) {
-      next();
-    } else {
-      res.status(401).send({
-        message: "Request noted & Only Admins are allowed to perform",
-      });
+    } catch (err) {
+      if (err.name === "TokenExpiredError") {
+        return res.status(401).send({
+          message: "Session expired",
+        });
+      } else {
+        return res.status(401).send({
+          message: "Invalid token",
+        });
+      }
     }
   } else {
     res.status(500).send({
-      message: "Unauthorised access",
+      message: "Token not provided",
     });
   }
 };
 
-const adminAuthenticate = async (req, res, next) => {
-  // let token  = req?.headers?.authorization?.split(' ')[1]
-  let token = req?.headers?.authorization;
- // console.log(token);
+// Role-based authorization for admin
+const adminGuard = async (req, res, next) => {
+  const headers = req?.headers;
+  const authorization = headers.authorization;
+  const isBearer = authorization.includes("Bearer");
+  const token = isBearer ? authorization.split(" ")?.[1] : authorization;
   if (token) {
-    let {payload} = decodeLoginToken(token) ?? {payload: null};
-    let currentTime = +new Date();
-    if (Math.floor(currentTime / 1000) < payload?.exp) {
+    try {
+      let payload = await decodeLoginToken(token);
       next();
-    } else {
-      res.status(401).send({
-        message: "Admin session expired and Logged out",
-      });
+    } catch (err) {
+      console.error(err)
+      if (err.name === "TokenExpiredError") {
+        return res.status(401).send({
+          message: "Session expired",
+        });
+      } else {
+        return res.status(401).send({
+          message: "Invalid token",
+        });
+      }
+    }
+  } else {
+    res.status(401).send({
+      message: "Unauthorized access",
+    });
+  }
+};
+
+// Admin session authentication
+const adminAuthenticate = async (req, res, next) => {
+  const headers = req?.headers;
+  const authorization = headers.authorization;
+  const isBearer = authorization.includes("Bearer");
+  const token = isBearer ? authorization.split(" ")?.[1] : authorization;
+  if (token) {
+    try {
+      let payload = await decodeLoginToken(token);
+      next();
+    } catch (err) {
+      console.error(err)
+      if (err.name === "TokenExpiredError") {
+        return res.status(401).send({
+          message: "Session expired",
+        });
+      } else {
+        return res.status(401).send({
+          message: "Invalid token",
+        });
+      }
     }
   } else {
     res.status(402).send({

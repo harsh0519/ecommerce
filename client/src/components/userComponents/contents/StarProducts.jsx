@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AxiosService from "../../../utils/AxiosService";
 import ApiRoutes from "../../../utils/ApiRoutes";
 import ProductCard from "../ProductCard"; 
@@ -15,7 +15,7 @@ export const StarProducts = () => {
         return;
       }
 
-      const response = await AxiosService.get(`${path}/random`);
+      const response = await AxiosService.get(`${path}`);
       console.log("API Response:", response);
 
       if (response.status === 200 && response.data && Array.isArray(response.data.productsList)) {

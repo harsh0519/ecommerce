@@ -10,12 +10,13 @@ const addProduct = async (req, res) => {
       productDescription: description,
       productCategory: category,
       productPrice: price,
-      productImage: filename,
+      productImage: `https://thecrazynyt.com/thecrzynyt/${filename}`,
     });
     res.status(200).send({
       addproduct,
     });
   } catch (error) {
+    console.log(error)
     res.status(500).send({
       message: "Internal server error in adding new product",
     });

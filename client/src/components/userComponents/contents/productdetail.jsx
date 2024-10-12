@@ -100,7 +100,7 @@ function ProductDetail() {
   }
 
   const imageUrl = product.productImage
-    ? `${import.meta.env.VITE_API_BASE_URL}/${product.productImage}`
+    ? `${product.productImage}`
     : "/path/to/default/image.jpg";
 
   return (
