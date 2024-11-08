@@ -13,7 +13,7 @@ function AppFooter() {
                 <i className="fas fa-map-marker-alt"></i>
                 <div className="cta-text">
                   <h4>Find us</h4>
-                  <span>1010 Avenue, sw 54321, Chandigarh</span>
+                  <span>A-106 Sector 108,Noida,201301</span>
                 </div>
               </div>
             </div>
@@ -22,7 +22,7 @@ function AppFooter() {
                 <i className="fas fa-phone"></i>
                 <div className="cta-text">
                   <h4>Call us</h4>
-                  <span>9876543210</span>
+                  <span>8882581541</span>
                 </div>
               </div>
             </div>
@@ -31,7 +31,7 @@ function AppFooter() {
                 <i className="far fa-envelope-open"></i>
                 <div className="cta-text">
                   <h4>Mail us</h4>
-                  <span>mail@info.com</span>
+                  <span>gccreation2018@gmail.com</span>
                 </div>
               </div>
             </div>
@@ -54,7 +54,7 @@ function AppFooter() {
           </ul>
         </div>
         <div className="copyright-area text-center mt-3">
-          <p>Copyright &copy; 2024, All Right Reserved by <a href="/" style={{ color: "#0E6B06" }}>YourCompany</a></p>
+          <p>Copyright &copy; 2024, All Right Reserved by <a href="/" style={{ color: "#0E6B06" }}>The Crazynyt</a></p>
         </div>
       </div>
     </footer>
