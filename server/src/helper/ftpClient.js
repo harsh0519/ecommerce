@@ -3,24 +3,33 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-let client = null;
+async function ftpClient() {
+  const client = new Client();
+  client.ftp.verbose = true; // Enables detailed logging for debugging
 
-export default async function ftpClient() {
-  client = new Client();
-  client.ftp.verbose = true;
   try {
-    const ftpRes = await client.access({
-      host: process.env.FTP_HOST,
+    // Establishing connection to the FTP server
+    await client.access({
+      host: "ftp.thecrazynyt.com",
       user: process.env.FTP_USER,
       password: process.env.FTP_PASSWORD,
-      secure: false,
+      secure: true, 
     });
-    console.log(ftpRes);
-    const file = await client.uploadFrom("vercel.json","vercel.json")
-    console.log(file)
+
     console.log("Connected to FTP server");
+
+    // Upload a file to the FTP server
+    await client.uploadFrom("vercel.json", "vercel.json");
+    console.log("File uploaded successfully");
+
   } catch (err) {
-    console.log("Error  connectiving ftp" + err);
+    console.error("Error connecting to FTP server:", err);
+  } finally {
+    // Close the client connection to prevent resource leaks
+    client.close();
+    console.log("FTP connection closed");
   }
 }
+
+// Run the FTP client function
 ftpClient();
