@@ -1,22 +1,23 @@
-import FTPStorage from "multer-ftp";
-import multer from "multer";
 import { MulterFtpStorage } from "@admandev/multer-ftp-storage";
-import path from "node:path";
-import crypto from "node:crypto";
+import multer from "multer";
 
 const ftpUpload = new MulterFtpStorage({
   ftp: {
-    host: process.env.FTP_HOST,
-    secure: false, // enables FTPS/FTP with TLS
-    user: process.env.FTP_USER,
-    password: process.env.FTP_PASSWORD,
-  },
+    host: "ftp.thecrazynyt.com",        // Replace with your FTP hostname
+    user: process.env.FTP_USER,          // FTP username
+    password: process.env.FTP_PASSWORD,  // FTP password
+    secure: true,                        // Enables FTPS/FTP with TLS
+    connTimeout: 100000,                 // Connection timeout in milliseconds
+    pasvTimeout: 100000,                 // Passive mode timeout in milliseconds
+    keepAlive: 100000,                   // Keep connection alive timeout in milliseconds
+  }
 });
 
-var imageUpload = multer({
+const imageUpload = multer({
   storage: ftpUpload,
 });
 
 export default {
   imageUpload,
 };
+;

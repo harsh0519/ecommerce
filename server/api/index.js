@@ -16,29 +16,9 @@ const allowedOrigin = isProduction ? process.env.BASE_CLIENT_URL : 'http://local
 const app = express();
 
 // CORS Middleware with Detailed Logging
-app.use((req, res, next) => {
-    const requestOrigin = req.headers.origin;
-    console.log(`Incoming request from origin: ${requestOrigin}`);
-
-    // CORS configuration
-    const corsOptions = {
-        origin: (origin, callback) => {
-            if (origin === allowedOrigin) {
-                console.log(`CORS allowed for origin: ${origin}`);
-                callback(null, true);
-            } else {
-                console.log(`CORS blocked for origin: ${origin}`);
-                callback(new Error(`CORS not allowed for origin: ${origin}`));
-            }
-        },
-        optionsSuccessStatus: 200,
-    };
-    
-    cors(corsOptions)(req, res, next);
-});
-
-// Enable CORS preflight
-app.options('*', cors());
+app.use(cors({
+ origin: ["http://localhost:3000","https://www.thecrazynyt.com","https://crazy-nyt-client-harsh0519s-projects.vercel.app"]  
+}));
 
 // Middleware for parsing URL-encoded and JSON bodies
 app.use(express.urlencoded({ extended: false }));
