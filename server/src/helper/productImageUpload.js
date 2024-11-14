@@ -20,4 +20,4 @@ const imageUpload = multer({
 export default {
   imageUpload,
 };
-;
+
