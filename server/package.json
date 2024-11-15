@@ -7,7 +7,7 @@
   "scripts": {
     "build": "node -v",
     "start": "cross-env NODE_ENV=production && node api/index.js",
-    "dev": "nodemon --inspect api/index.js"
+    "dev": "cross-env NODE_ENV=development && nodemon --inspect api/index.js"
   },
   "author": "",
   "license": "ISC",

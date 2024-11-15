@@ -4,10 +4,9 @@ import multer from 'multer';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import dotenv from 'dotenv';
 
-dotenv.config({
-  path: "../../.env"
-});
+dotenv.config()
 
+;
 // Configure Cloudinary with your credentials
 cloudinary.config({
   cloud_name: process.env.FTP_HOST,  // Cloud name from Cloudinary dashboard
@@ -21,7 +20,7 @@ console.log('✅ Cloudinary configuration loaded');
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'thecrazynight',  
+    folder: 'thecrazynight',
   },
 });
 
@@ -29,6 +28,10 @@ console.log('✅ Multer storage configured');
 
 // Initialize multer with Cloudinary storage
 const imageUpload = multer({
+  onError: function (err, next) {
+    console.log('error', err);
+    next(err);
+  },
   storage,
   limits: { fileSize: 5 * 1024 * 1024 }, // Max file size 5MB
   fileFilter: (req, file, cb) => {
@@ -42,6 +45,7 @@ const imageUpload = multer({
       cb(new Error('Invalid file type. Only images are allowed.'));
     }
   },
+
 });
 
 console.log('✅ Multer initialized with Cloudinary storage');
