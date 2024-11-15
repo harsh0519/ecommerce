@@ -1,17 +1,20 @@
-import cloudinary from 'cloudinary';
-const { v2: cloudinaryV2 } = cloudinary;
+import cld from 'cloudinary';
+const cloudinary = cld.v2;
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({
+  path: "../../.env"
+});
 
 // Configure Cloudinary with your credentials
 cloudinary.config({
   cloud_name: process.env.FTP_HOST,
   api_key: process.env.FTP_KEY,
   api_secret: process.env.FTP_SECRET,
+  secure: true
 });
 
-console.log('✅ Cloudinary configuration loaded successfully.');
+console.log(cloudinary.config());
 
 async function cloudinaryUpload(filePath) {
   if (!filePath) {
@@ -23,7 +26,7 @@ async function cloudinaryUpload(filePath) {
 
   try {
     const result = await cloudinary.uploader.upload(filePath, {
-      folder: 'uploads', // Optional: Organize uploads into a specific folder
+      folder: 'thecrazynight', // Optional: Organize uploads into a specific folder
       use_filename: true, // Use original filename in Cloudinary
       unique_filename: false, // Prevent Cloudinary from generating a unique name
     });
@@ -39,4 +42,4 @@ async function cloudinaryUpload(filePath) {
 }
 
 // Example usage
-cloudinaryUpload(); // Replace with your file path
+cloudinaryUpload("../../public/1721410791513download.jpeg"); // Replace with your file path

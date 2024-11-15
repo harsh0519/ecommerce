@@ -1,10 +1,12 @@
-import cloudinary from 'cloudinary';
-const { v2: cloudinaryV2 } = cloudinary;
+import cld from 'cloudinary';
+const cloudinary = cld.v2;
 import multer from 'multer';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({
+  path: "../../.env"
+});
 
 // Configure Cloudinary with your credentials
 cloudinary.config({
@@ -19,16 +21,7 @@ console.log('✅ Cloudinary configuration loaded');
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'uploads',  // Optional: specify a folder on Cloudinary
-    public_id: (req, file) => {
-      const publicId = file.originalname.split('.')[0];
-      console.log(`ℹ️ Generating public ID for file: ${publicId}`);
-      return publicId;
-    },
-    format: async (req, file) => {
-      console.log(`ℹ️ File format being set for file: ${file.originalname}`);
-      return 'jpg'; // You can dynamically change this if needed
-    },
+    folder: 'thecrazynight',  
   },
 });
 

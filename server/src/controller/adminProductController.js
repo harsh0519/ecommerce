@@ -3,14 +3,15 @@ import ProductsModel from "../models/productModel.js";
 const addProduct = async (req, res) => {
   try {
     const { title, weight, description,category, price } = req.body;
-    const { filename } = req.file;
+    const { filename,path,size } = req.file;
+    console.log(path)
     const addproduct = await ProductsModel.create({
       productTitle: title,
       productWeight: weight,
       productDescription: description,
       productCategory: category,
       productPrice: price,
-      productImage: `https://thecrazynyt.com/thecrzynyt/${filename}`,
+      productImage: path,
     });
     res.status(200).send({
       addproduct,
