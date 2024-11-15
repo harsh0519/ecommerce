@@ -1,35 +1,42 @@
-import { Client } from "basic-ftp";
-import dotenv from "dotenv";
+import cloudinary from 'cloudinary';
+const { v2: cloudinaryV2 } = cloudinary;
+import dotenv from 'dotenv';
 
 dotenv.config();
 
-async function ftpClient() {
-  const client = new Client();
-  client.ftp.verbose = true; // Enables detailed logging for debugging
+// Configure Cloudinary with your credentials
+cloudinary.config({
+  cloud_name: process.env.FTP_HOST,
+  api_key: process.env.FTP_KEY,
+  api_secret: process.env.FTP_SECRET,
+});
+
+console.log('✅ Cloudinary configuration loaded successfully.');
+
+async function cloudinaryUpload(filePath) {
+  if (!filePath) {
+    console.error('❌ Error: No file path provided for upload.');
+    return;
+  }
+
+  console.log(`ℹ️ Starting upload for file at path: ${filePath}`);
 
   try {
-    // Establishing connection to the FTP server
-    await client.access({
-      host: "ftp.thecrazynyt.com",
-      user: process.env.FTP_USER,
-      password: process.env.FTP_PASSWORD,
-      secure: true, 
+    const result = await cloudinary.uploader.upload(filePath, {
+      folder: 'uploads', // Optional: Organize uploads into a specific folder
+      use_filename: true, // Use original filename in Cloudinary
+      unique_filename: false, // Prevent Cloudinary from generating a unique name
     });
 
-    console.log("Connected to FTP server");
+    console.log('✅ File uploaded successfully to Cloudinary.');
+    console.log('ℹ️ Cloudinary response:', result);
 
-    // Upload a file to the FTP server
-    await client.uploadFrom("vercel.json", "vercel.json");
-    console.log("File uploaded successfully");
-
+    return result; // Return the result for further use
   } catch (err) {
-    console.error("Error connecting to FTP server:", err);
-  } finally {
-    // Close the client connection to prevent resource leaks
-    client.close();
-    console.log("FTP connection closed");
+    console.error('❌ Error uploading to Cloudinary:', err.message);
+    console.error('ℹ️ Full error details:', err);
   }
 }
 
-// Run the FTP client function
-ftpClient();
+// Example usage
+cloudinaryUpload(); // Replace with your file path
