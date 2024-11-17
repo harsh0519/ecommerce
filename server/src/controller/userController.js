@@ -58,6 +58,18 @@ const userprofileUpdate = async (req, res) => {
     });
   }
 };
+const getProductById = async (req,res)=>{
+  try {
+    let productsData = await ProductModel.findById({ _id: req.params.id });
+    res.status(200).send({
+      productsData,
+    });
+  } catch (error) {
+    res.status(500).send({
+      message: "Internal server error in getting product list",
+    });
+  }
+}
 
 const getAllProducts = async (req, res) => {
   try {
@@ -238,6 +250,7 @@ export default {
   addCartList,
   removeCartList,
   clearCartItems,
+  getProductById,
   cartItemsList,
   updateQuantity,
   getProductsByCatagory,

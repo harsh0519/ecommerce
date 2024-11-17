@@ -1,11 +1,19 @@
 import mongoose from "./indexModel.js"
 
 const productSchema = new mongoose.Schema({
+    productId:{
+        type:String,
+        reuire:true
+    },
     productTitle : {
         type : String,
         required : true
     },
     productWeight : {
+        type : String,
+        required : true
+    },
+    productHeight : {
         type : String,
         required : true
     },
@@ -16,6 +24,9 @@ const productSchema = new mongoose.Schema({
     productPrice : {
         type : Number,
         required : true
+    },
+    productOriginalPrice:{
+        type :Number,
     },
     productQuantity : {
         default : 0,

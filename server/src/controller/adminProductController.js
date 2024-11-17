@@ -2,15 +2,17 @@ import ProductsModel from "../models/productModel.js";
 
 const addProduct = async (req, res) => {
   try {
-    const { title, weight, description,category, price } = req.body;
+    const { title, weight,height, description,category, price, productOriginalPrice } = req.body;
     const { filename,path,size } = req.file;
     console.log(path)
     const addproduct = await ProductsModel.create({
       productTitle: title,
       productWeight: weight,
+      productHeight: height,
       productDescription: description,
       productCategory: category,
       productPrice: price,
+      productOriginalPrice: productOriginalPrice,
       productImage: path,
     });
     res.status(200).send({
@@ -43,14 +45,16 @@ const getAllProducts = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   try {
-    const { title, weight, description,category, price } = req.body;
+    const { title, weight,height, description,category, price,productOriginalPrice } = req.body;
     const updatedProduct = {};
     Object.entries({
       productTitle: title,
       productWeight: weight,
+      productHeight: height,
       productDescription: description,
       productcategory: category,
       productPrice: price,
+      productOriginalPrice: productOriginalPrice,
     }).forEach(([key, value]) => {
      //   console.log(key,value)
       if (value) {

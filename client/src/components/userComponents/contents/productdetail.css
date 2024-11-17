@@ -13,8 +13,6 @@ body {
 
 .product-detail-container {
   background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   padding: 30px;
 }
 
@@ -28,7 +26,6 @@ body {
   color: #ff000d;
   text-decoration: none;
   padding: 8px 16px;
-  border-radius: 5px;
   background-color: #f8f9fa;
   transition: background-color 0.3s ease;
   display: inline-block;
@@ -57,7 +54,6 @@ body {
 }
 
 .product-detail-card img {
-  border-radius: 15px;
   transition: transform 0.3s ease;
 }
 
@@ -128,7 +124,7 @@ body {
 }
 
 .product-info-section h2::after {
-  content: "Product Details";
+  content: "";
   font-size: 1rem;
   font-weight: normal;
   color: #6c757d;

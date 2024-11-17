@@ -16,8 +16,10 @@ function AdminProductsContent() {
     const [show, setShow] = useState(false)
     const [title, setTitle] = useState('')
     const [weight, setWeight] = useState('')
+    const [height, setHeight] = useState('')
     const [desc, setDesc] = useState('')
     const [cate, setCate] = useState('')
+    const [Orignalprice, setOrignalPrice] = useState('')
     const [price, setPrice] = useState('')
     const [image, setImage] = useState(null)
 
@@ -33,8 +35,10 @@ function AdminProductsContent() {
         const formData = new FormData();
         formData.append('title', title)
         formData.append('weight', weight)
+        formData.append('height', height)
         formData.append('description', desc)
         formData.append('category', cate)
+        formData.append('orignalPrice', Orignalprice)
         formData.append('price', price)
         formData.append('imagefile', image)
         try {
@@ -83,7 +87,7 @@ function AdminProductsContent() {
             </div>
         </Container>
 
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} fullscreen>
             <Form onSubmit={handleAddProduct}>
                 <Modal.Header closeButton>
                     <Modal.Title>Product</Modal.Title>
@@ -98,12 +102,20 @@ function AdminProductsContent() {
                         <Form.Control type="text" name='weight' onChange={(e)=> setWeight(e.target.value)} placeholder="Enter weighs in g/kg"/>
                     </Form.Group>
                     <Form.Group className="mb-3">
+                        <Form.Label>Product Height</Form.Label>
+                        <Form.Control type="text" name='weight' onChange={(e)=> setHeight(e.target.value)} placeholder="Enter Height in cm/m"/>
+                    </Form.Group>
+                    <Form.Group className="mb-3">
                         <Form.Label>Product Description</Form.Label>
                         <Form.Control type="text" name='description' onChange={(e)=> setDesc(e.target.value)} placeholder="Enter Description"/>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Product Category</Form.Label>
                         <Form.Control type="text" name='category' onChange={(e)=> setCate(e.target.value)} placeholder="Enter Category"/>
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Product Orignal Price</Form.Label>
+                        <Form.Control type="text" name='price' onChange={(e)=> setOrignalPrice(e.target.value)} placeholder="Enter Price"/>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Product Price</Form.Label>

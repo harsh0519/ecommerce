@@ -25,7 +25,7 @@ router.delete('/deleteaddress/:id/:addressId',auth.authenticate, addressControll
 
 //Products
 router.get('/cartitems/:id', auth.authenticate,userController.cartItemsList)
-router.get('/allproducts/:id',auth.authenticate, userController.getAllProducts)
+router.get('/getProductById/:id',auth.authenticate, userController.getProductById)
 router.get('/allproducts',auth.authenticate, userController.getAllProducts)
 router.get('/allproducts/search',auth.authenticate, userController.searchAllProducts)
 router.get('/listcategory/:id', userController.getProductsByCatagory)

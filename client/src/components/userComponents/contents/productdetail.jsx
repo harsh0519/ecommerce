@@ -14,11 +14,14 @@ import { toast } from "react-toastify";
 import { CartDataContext } from "../../../contextApi/CartDataComponent";
 import AxiosService from "../../../utils/AxiosService";
 import ApiRoutes from "../../../utils/ApiRoutes";
+import Nav from "../AppNavbar"
+import Footer from "../AppFooter"
 import "./productdetail.css";
 import { jwtDecode } from "jwt-decode";
 
 function ProductDetail() {
   const { id: productId } = useParams(); 
+  console.log(productId)
   const navigate = useNavigate(); 
   const location = useLocation(); 
   const [product, setProduct] = useState(location.state?.product || null); 
@@ -35,12 +38,12 @@ function ProductDetail() {
         setLoading(true); 
         try {
           const response = await AxiosService.get(
-            `${ApiRoutes.GETALLPRODUCTS.path}/${productId}`
+            `${ApiRoutes.GETPRODUCTBYID.path}/${productId}`
           );
-          console.log("Product Detail Response:", response.data);
+          console.log("Product Detail Response:", response.data.productsData);
 
           if (response.status === 200) {
-            const fetchedProduct = response.data.productsList[0];
+            const fetchedProduct = response.data.productsData;
             if (fetchedProduct) {
               setProduct(fetchedProduct);
             } else {
@@ -104,6 +107,8 @@ function ProductDetail() {
     : "/path/to/default/image.jpg";
 
   return (
+    <>
+    <Nav/>
     <div className="product-detail-fullpage">
       <Container className="product-detail-container">
         <Button
@@ -119,19 +124,19 @@ function ProductDetail() {
               <Image
                 height={300}
                 src={imageUrl}
-                style={{ borderRadius: "10px", width: "100%" }}
+                style={{ width: "100%",border:"none" , objectFit:"cover"}}
                 alt={product.productTitle}
               />
               <div className="quantity-controls">
                 <Button
-                  variant="danger"
+                  variant="dark"
                   onClick={() => handleQuantityChange(-1)}
                 >
                   -
                 </Button>
                 <span className="quantity-display">{quantity}</span>
                 <Button
-                  variant="success"
+                  variant="dark"
                   onClick={() => handleQuantityChange(1)}
                 >
                   +
@@ -165,7 +170,7 @@ function ProductDetail() {
               </h4>
               <p className="product-old-price">
                 Old Price: {"\u20B9"}
-                {product.productPrice + 100}.00
+                {product.productOriginalPrice}.00
               </p>
               <p className="product-availability">
                 Availability:{" "}
@@ -182,6 +187,8 @@ function ProductDetail() {
         </Row>
       </Container>
     </div>
+    <Footer/>
+    </>
   );
 }
 

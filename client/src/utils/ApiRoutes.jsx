@@ -51,6 +51,10 @@ const ApiRoutes = {
     path: "/users/allproducts",
     authenticate: true,
   },
+  GETPRODUCTBYID: {
+    path: "/users/getProductById",
+    authenticate: true,
+  },
   ADDCARTLIST: {
     path: "/users/addcart",
     authenticate: true,

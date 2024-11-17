@@ -2,7 +2,7 @@ import Razorpay from 'razorpay'
 import crypto from 'crypto'
 import OrdersModel from '../models/orderModel.js'
 
-const order = async(req,res) => {
+const  order = async(req,res) => {
     try {
         const rp = new Razorpay({
             key_id: process.env.RP_KEY_ID,

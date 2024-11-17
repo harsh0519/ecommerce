@@ -3,7 +3,9 @@ import { Modal, Button } from 'react-bootstrap';
 import './AgeVerificationModal.css';
 
 const AgeVerificationModal = ({ show, onClose }) => {
-    const [isAdult, setIsAdult] = useState(null);
+    const hasVerifiedAge = localStorage?.getItem("hasVerifiedAge")
+    const [isAdult, setIsAdult] = useState(hasVerifiedAge?true:false);
+
 
     const handleConfirmation = () => {
         setIsAdult(true);
@@ -16,7 +18,7 @@ const AgeVerificationModal = ({ show, onClose }) => {
         localStorage.setItem('hasVerifiedAge', 'false');
         window.close();
     };
-
+    if(hasVerifiedAge){return <></>}
     return (
         <Modal
             show={show}
