@@ -27,10 +27,11 @@ const productSchema = new mongoose.Schema({
     },
     productOriginalPrice:{
         type :Number,
+        required : true
     },
     productQuantity : {
         default : 0,
-        type : Number,
+        type : Number
     },
     productImage : {
         type : String,

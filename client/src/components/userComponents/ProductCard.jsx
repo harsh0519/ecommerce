@@ -26,6 +26,7 @@ function ProductCard({ cardData }) {
           <h5 className="product-title">
             {cardData.productTitle}
             <span className="product-weight"> ({cardData.productWeight})</span>
+            <span className="product-weight"> ({cardData.productHeight})</span>
           </h5>
           <p className="product-description">{cardData.productDescription}</p>
           <h5 className="product-price">

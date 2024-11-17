@@ -91,6 +91,7 @@ function CartContent() {
         productPrice : e.productPrice,
         productImage : e.productImage,
         productWeight : e.productWeight,
+        productHeight: e.productHeight,
       }))
     }
     try {

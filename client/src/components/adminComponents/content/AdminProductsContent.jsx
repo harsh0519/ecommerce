@@ -19,7 +19,7 @@ function AdminProductsContent() {
     const [height, setHeight] = useState('')
     const [desc, setDesc] = useState('')
     const [cate, setCate] = useState('')
-    const [Orignalprice, setOrignalPrice] = useState('')
+    const [originalPrice, setOrignalPrice] = useState('')
     const [price, setPrice] = useState('')
     const [image, setImage] = useState(null)
 
@@ -38,7 +38,7 @@ function AdminProductsContent() {
         formData.append('height', height)
         formData.append('description', desc)
         formData.append('category', cate)
-        formData.append('orignalPrice', Orignalprice)
+        formData.append('originalPrice', originalPrice)
         formData.append('price', price)
         formData.append('imagefile', image)
         try {
@@ -103,7 +103,7 @@ function AdminProductsContent() {
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Product Height</Form.Label>
-                        <Form.Control type="text" name='weight' onChange={(e)=> setHeight(e.target.value)} placeholder="Enter Height in cm/m"/>
+                        <Form.Control type="text" name='height' onChange={(e)=> setHeight(e.target.value)} placeholder="Enter Height in cm/m"/>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Product Description</Form.Label>
@@ -115,7 +115,7 @@ function AdminProductsContent() {
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Product Orignal Price</Form.Label>
-                        <Form.Control type="text" name='price' onChange={(e)=> setOrignalPrice(e.target.value)} placeholder="Enter Price"/>
+                        <Form.Control type="text" name='orignalprice' onChange={(e)=> setOrignalPrice(e.target.value)} placeholder="Enter Price"/>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Product Price</Form.Label>
