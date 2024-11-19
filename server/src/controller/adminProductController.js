@@ -1,99 +1,112 @@
 import ProductsModel from "../models/productModel.js";
 
+// Add a Product
 const addProduct = async (req, res) => {
   try {
-    const { title, weight,height, description,category, price, originalPrice } = req.body;
-    const { filename,path,size } = req.file;
-    console.log(path)
+    const { title, weight, height, sku, description, category, price, originalPrice } = req.body;
+
+    // `req.files` is used to handle multiple images
+    const images = req.files.map((file) => file.path);
+
     const addproduct = await ProductsModel.create({
       productTitle: title,
       productWeight: weight,
       productHeight: height,
+      Sku: sku, 
       productDescription: description,
       productCategory: category,
       productPrice: price,
       productOriginalPrice: originalPrice,
-      productImage: path,
+      productImage: images, 
     });
+
     res.status(200).send({
       addproduct,
+      message: "Product added successfully",
     });
   } catch (error) {
-    console.log(error)
+    console.error(error);
     res.status(500).send({
       message: "Internal server error in adding new product",
     });
   }
 };
 
+// Get All Products
 const getAllProducts = async (req, res) => {
   try {
-    let productsList = await ProductsModel.find();
-    if (productsList) {
-      let productsCount = await ProductsModel.countDocuments();
-      res.status(200).send({
-        productsList,
-        productsCount,
-      });
-    }
+    const productsList = await ProductsModel.find();
+    const productsCount = await ProductsModel.countDocuments();
+
+    res.status(200).send({
+      productsList,
+      productsCount,
+    });
   } catch (error) {
+    console.error(error);
     res.status(500).send({
-      message: "Internal server error in adding new product",
+      message: "Internal server error in retrieving products",
     });
   }
 };
 
+// Update a Product
 const updateProduct = async (req, res) => {
   try {
-    const { title, weight,height, description,category, price,originalPrice } = req.body;
+    const { title, weight, height, sku, description, category, price, originalPrice } = req.body;
+
     const updatedProduct = {};
+
     Object.entries({
       productTitle: title,
       productWeight: weight,
       productHeight: height,
+      Sku: sku, 
       productDescription: description,
-      productcategory: category,
+      productCategory: category,
       productPrice: price,
       productOriginalPrice: originalPrice,
     }).forEach(([key, value]) => {
-     //   console.log(key,value)
-      if (value) {
-        updateProduct[key] = value;
-      }
+      if (value) updatedProduct[key] = value; 
     });
-    if (req.file) {
-      const { filename } = req.file;
-      if (filename) {
-        updatedProduct.productImage = filename;
-      }
+
+    // Handle updating images if provided
+    if (req.files && req.files.length > 0) {
+      const images = req.files.map((file) => file.path);
+      updatedProduct.productImage = images;
     }
-    let editedProduct = await ProductsModel.findByIdAndUpdate(
+
+    const editedProduct = await ProductsModel.findByIdAndUpdate(
       { _id: req.params.id },
-      {
-        $set: updatedProduct,
-      },
+      { $set: updatedProduct },
       { new: true }
     );
+
     res.status(200).send({
       editedProduct,
+      message: "Product updated successfully",
     });
   } catch (error) {
-   // console.log(error);
+    console.error(error);
     res.status(500).send({
       message: "Internal server error in editing product",
     });
   }
 };
 
+// Remove a Product
 const removeProduct = async (req, res) => {
   try {
-    let deletedProduct = await ProductsModel.findByIdAndDelete({
+    const deletedProduct = await ProductsModel.findByIdAndDelete({
       _id: req.params.id,
     });
+
     res.status(200).send({
       deletedProduct,
+      message: "Product deleted successfully",
     });
   } catch (error) {
+    console.error(error);
     res.status(500).send({
       message: "Internal server error in deleting product",
     });

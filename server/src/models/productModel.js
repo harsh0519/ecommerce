@@ -1,56 +1,60 @@
 import mongoose from "./indexModel.js"
 
 const productSchema = new mongoose.Schema({
-    productId:{
-        type:String,
-        reuire:true
+    productId: {
+        type: String,
+        required: true
     },
-    productTitle : {
-        type : String,
-        required : true
+    productTitle: {
+        type: String,
+        required: true
     },
-    productWeight : {
-        type : String,
-        required : true
+    productWeight: {
+        type: String,
+        required: true
     },
-    productHeight : {
-        type : String,
-        required : true
+    Sku: {
+        type: String,
+        required: true
     },
-    productDescription : {
-        type : String,
-        required : true
+    productHeight: {
+        type: String,
+        required: true
     },
-    productPrice : {
-        type : Number,
-        required : true
+    productDescription: {
+        type: String,
+        required: true
     },
-    productOriginalPrice:{
-        type :Number,
-        required : true
+    productPrice: {
+        type: Number,
+        required: true
     },
-    productQuantity : {
-        default : 0,
-        type : Number
+    productOriginalPrice: {
+        type: Number,
+        required: true
     },
-    productImage : {
-        type : String,
-        required : true
+    productQuantity: {
+        default: 0,
+        type: Number
     },
-    isStockAvailable : {
-        type : Boolean,
-        default : true
+    productImage: {
+        type: [String],
+        required: true
     },
-    productCategory:{
-        type:String,
-        enum:["Male","Female","Couple", "Anal", "Bondage"],
-        required :true
+    isStockAvailable: {
+        type: Boolean,
+        default: true
+    },
+    productCategory: {
+        type: String,
+        enum: ["Male", "Female", "Couple", "Anal", "Bondage"],
+        required: true
     }
 },
-{ timestamps : true, strictQuery: true },
-{ collection : 'products'})
-productSchema.index({productTitle: "text"})
+    { timestamps: true, strictQuery: true },
+    { collection: 'products' })
+productSchema.index({ productTitle: "text" })
 
-const ProductsModel = mongoose.model("products",productSchema)
+const ProductsModel = mongoose.model("products", productSchema)
 
 export default ProductsModel

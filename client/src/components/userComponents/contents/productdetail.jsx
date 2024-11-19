@@ -8,6 +8,7 @@ import {
   Container,
   Row,
   Col,
+  Carousel,
 } from "react-bootstrap";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -21,7 +22,6 @@ import { jwtDecode } from "jwt-decode";
 
 function ProductDetail() {
   const { id: productId } = useParams();
-  // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate();
   const location = useLocation();
   const [product, setProduct] = useState(location.state?.product || null);
@@ -100,10 +100,6 @@ function ProductDetail() {
     return <div className="no-product">No product details available.</div>;
   }
 
-  const imageUrl = product.productImage
-    ? product.productImage
-    : "/path/to/default/image.jpg";
-
   return (
     <>
       <Nav />
@@ -113,12 +109,18 @@ function ProductDetail() {
             {/* Product Image Section */}
             <Col md={6}>
               <Card className="product-card">
-                <Image
-                  height={600}
-                  src={imageUrl}
-                  alt={product.productTitle}
-                  className="product-image"
-                />
+                <Carousel>
+                  {product.productImages?.map((image, index) => (
+                    <Carousel.Item key={index}>
+                      <Image
+                        height={600}
+                        src={image}
+                        alt={`Product Image ${index + 1}`}
+                        className="product-image"
+                      />
+                    </Carousel.Item>
+                  ))}
+                </Carousel>
                 <div className="quantity-controls">
                   <Button
                     variant="dark"
@@ -148,6 +150,9 @@ function ProductDetail() {
             <Col md={6}>
               <Card.Body>
                 <h2 className="product-title">{product.productTitle}</h2>
+                <p className="product-sku">
+                  <strong>SKU:</strong> {product.productSKU}
+                </p>
                 <div className="product-rating">
                   <div className="stars">★★★★★</div>
                   <span className="rating-text">4.5 (200 reviews)</span>
@@ -155,7 +160,7 @@ function ProductDetail() {
                 <p className="product-detail">
                   <strong>Weight:</strong> {product.productWeight}
                 </p>
-                <p className="product-detail">
+                <p className="product-height">
                   <strong>Height:</strong> {product.productHeight}
                 </p>
                 <p className="product-description">

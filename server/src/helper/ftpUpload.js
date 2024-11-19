@@ -8,44 +8,36 @@ dotenv.config({
     path: "../../.env"
 });
 
-// Configure Cloudinary with your credentials
+// Configure Cloudinary with credentials
 cloudinary.config({
-    cloud_name: process.env.FTP_HOST,  // Cloud name from Cloudinary dashboard
-    api_key: process.env.FTP_KEY,      // API key from Cloudinary dashboard
-    api_secret: process.env.FTP_SECRET, // API secret from Cloudinary dashboard
+    cloud_name: process.env.FTP_HOST,  // Cloudinary Cloud Name
+    api_key: process.env.FTP_KEY,     // Cloudinary API Key
+    api_secret: process.env.FTP_SECRET, // Cloudinary API Secret
 });
-
-console.log('✅ Cloudinary configuration loaded successfully.');
 
 // Configure Multer storage for Cloudinary
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: 'thecrazynight', // Optional: Organize uploads into a specific folder
+        folder: 'thecrazynight', // Specify the folder name in Cloudinary
+        allowed_formats: ['jpeg', 'png', 'gif'], // Allowed file formats
     },
 });
 
-console.log('✅ Multer storage configured with Cloudinary settings.');
-
-// Initialize multer with Cloudinary storage
+// Initialize Multer with Cloudinary storage
 const imageUpload = multer({
     storage,
-    limits: { fileSize: 5 * 1024 * 1024 }, // Max file size 5MB
+    limits: { fileSize: 5 * 1024 * 1024 }, // Set max file size to 5MB
     fileFilter: (req, file, cb) => {
-        console.log('ℹ️ Validating file type...');
         const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
         if (allowedTypes.includes(file.mimetype)) {
-            console.log(`✅ File type "${file.mimetype}" is allowed.`);
-            cb(null, true);  // Accept file
+            cb(null, true); // Accept file
         } else {
-            console.error(`❌ Invalid file type "${file.mimetype}". Only JPEG, PNG, and GIF are allowed.`);
-            cb(new Error('Invalid file type. Only images are allowed.'));
+            cb(new Error('Invalid file type. Only JPEG, PNG, and GIF are allowed.')); // Reject file
         }
     },
 });
-
-console.log('✅ Multer initialized with Cloudinary storage and configurations.');
 
 export default {
     imageUpload,

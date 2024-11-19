@@ -17,10 +17,10 @@ router.get('/currentuser/:userId/:id',auth.adminAuthenticate,adminUserController
 router.put('/edituser/:userId/:id',auth.adminAuthenticate,adminUserController.editUser)
 router.delete('/deleteuser/:userId/:id',auth.adminAuthenticate,adminUserController.deleteUser)
 
-router.post('/addproduct/:id', auth.adminAuthenticate,auth.adminGuard,productImageUpload.imageUpload.single('imagefile'), adminProductController.addProduct)
+router.post('/addproduct/:id', auth.adminAuthenticate,auth.adminGuard,productImageUpload.imageUpload, adminProductController.addProduct)
 router.get('/getallproducts/:id', auth.adminAuthenticate, adminProductController.getAllProducts)
 router.get('/getallproducts', auth.adminAuthenticate, adminProductController.getAllProducts)
-router.put('/editproduct/:id', auth.adminAuthenticate,productImageUpload.imageUpload.single('imagefile'), adminProductController.updateProduct)
+router.put('/editproduct/:id', auth.adminAuthenticate,productImageUpload.imageUpload, adminProductController.updateProduct)
 router.delete('/deleteproduct/:id', auth.adminAuthenticate, adminProductController.removeProduct)
 
 router.get('/getcurrentuser/:id', auth.adminAuthenticate, adminUserController.getCurrentUser)

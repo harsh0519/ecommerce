@@ -1,0 +1,15 @@
+.modal-fullscreen .modal-content {
+  height: 100%;
+}
+
+.modal-body {
+  overflow-y: auto; /* Allow scrolling inside the modal */
+}
+
+body.modal-open {
+  overflow: hidden; /* Prevent background scrolling */
+}
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.6); /* Slightly dim the background */
+}
