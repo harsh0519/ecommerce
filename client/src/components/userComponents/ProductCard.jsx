@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Col, Card, Image, Spinner } from "react-bootstrap";
+import { Carousel, Button, Col, Card, Image, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./ProductCard.css"; // Import custom CSS for additional styling
 
@@ -16,11 +16,26 @@ function ProductCard({ cardData }) {
     <Col>
       <Card className="custom-product-card">
         <div className="image-container">
-          <Image
-            src={`${cardData.productImage}`}
-            alt={cardData.productTitle}
-            className="product-image"
-          />
+          {cardData.productImage && cardData.productImage.length > 0 ? (
+            <Carousel>
+              {cardData.productImage.map((img, index) => (
+                <Carousel.Item key={index}>
+                  <Image
+                    height={180}
+                    src={img}
+                    alt={`Product Image ${index + 1}`}
+                    style={{ borderRadius: '5px', width: '100%' }}
+                  />
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          ) : (
+            <Image
+              src={`${cardData.productImage}`}
+              alt={cardData.productTitle}
+              className="product-image"
+            />
+          )}
         </div>
         <Card.Body className="custom-card-body">
           <h5 className="product-title">

@@ -2,8 +2,7 @@ import mongoose from "./indexModel.js"
 
 const productSchema = new mongoose.Schema({
     productId: {
-        type: String,
-        required: true
+        type: String
     },
     productTitle: {
         type: String,

@@ -110,7 +110,7 @@ function ProductDetail() {
             <Col md={6}>
               <Card className="product-card">
                 <Carousel>
-                  {product.productImages?.map((image, index) => (
+                  {product.productImage?.map((image, index) => (
                     <Carousel.Item key={index}>
                       <Image
                         height={600}
@@ -151,7 +151,7 @@ function ProductDetail() {
               <Card.Body>
                 <h2 className="product-title">{product.productTitle}</h2>
                 <p className="product-sku">
-                  <strong>SKU:</strong> {product.productSKU}
+                  <strong>SKU:</strong> {product.Sku}
                 </p>
                 <div className="product-rating">
                   <div className="stars">★★★★★</div>

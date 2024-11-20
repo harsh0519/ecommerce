@@ -17,7 +17,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params: (req, file) => ({
-    folder: thecrazynight/$`{req.user?.id || 'default'}`,
+    folder: "thecrazynight",
   }),
 });
 
